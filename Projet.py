@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def load_data():
     with st.spinner(text='In progress'):
     
-        df = pd.read_excel("data/Airbnb.xlsx")
+        df = pd.read_excel("Airbnb.xlsx")
     
         City = df["city"].unique()
         Country = df["country"].unique()
