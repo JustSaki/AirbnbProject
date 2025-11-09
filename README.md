@@ -1,10 +1,13 @@
 Quick explanation of the code and app:
-First, t loads an Airbnb dataset containing listings from European cities
+
+First, loads an Airbnb dataset containing listings from European cities
+
 Then, users can filter accommodation by their preferences on the:
 - City
 - Capacity (number of guests)
 - Maximum price
 - Type of accommodation
+
 Finally, the app:
 - Display a data table of matching listings
 - Shows their location on an interactive map
