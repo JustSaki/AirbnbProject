@@ -59,8 +59,8 @@ if ville and type_location :
                      "dist_from_center", "dist_from_metro"]
         st.write(f"Available rental for {capacite} people with selected accomodations types: {type_location}.")
 #hauteur max comprise entre nbr de ligne * 40 et 400 (pixels)
-        h_max = min(nbr_L*40, 400)
-        st.dataframe(locations[affichage], height = h_max)
+        #h_max = min(nbr_L*40, 400)
+        st.dataframe(locations[affichage], height = "auto")
         st.write(f"dist_from_center and dist_from_metro represent the distances from the accomodation to the city center\
                  and the nearest metro station, expressed in km.")
         
