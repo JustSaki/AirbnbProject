@@ -28,18 +28,18 @@ df, Country, City, Capacity, Price, Room_Type, Longi, Lati = load_data()
 #création de la catégorie filtre et des différents filtres interactifs 
 st.sidebar.title("Filtres:")
 
-ville = st.sidebar.multiselect("Ville:", City)
+ville = st.sidebar.multiselect("City:", City)
 locations = df.query(f"city in @ville")
 
 capacity_sorted = sorted(Capacity)
-capacite = st.sidebar.select_slider("Nombre de personnes:", capacity_sorted)
+capacite = st.sidebar.select_slider("Number of guests:", capacity_sorted)
 locations = locations.query(f"capacity == {capacite}")
 
 price_sorted = sorted(Price)   
-Max= st.sidebar.select_slider("Prix:", price_sorted)
+Max= st.sidebar.select_slider("Price:", price_sorted)
 locations = locations.query(f"price <= {Max}")
 
-type_location = st.sidebar.multiselect("Type de location:", Room_Type)
+type_location = st.sidebar.multiselect("Type of accomodation:", Room_Type)
 locations = locations.query(f"room_type in @type_location")
 
         #periode = st.sidebar.radio("Période:", period)
@@ -54,20 +54,20 @@ if ville and type_location :
         nbr_L= locations.shape[0]
         
         if nbr_L == 0 :
-            st.info('Auncun logements ne correspondent à la selction.')
+            st.info('No accomodations match your selection')
         affichage = ["city", "price", "room_type", "bedrooms", "cleanliness_rating", "guest_satisfaction_overall",\
                      "dist_from_center", "dist_from_metro"]
-        st.write(f"Locations disponible pour {capacite} personnes avec comme type de logements selectionné : {type_location}.")
+        st.write(f"Available rental for {capacite} people with selected accomodations types: {type_location}.")
 #hauteur max comprise entre nbr de ligne * 40 et 400 (pixels)
         h_max = min(nbr_L*40, 400)
         st.dataframe(locations[affichage], height = h_max)
-        st.write(f"dist_from_center et dist_from_metro sont respectivement les distances entre le logement et le centre ville \
-                 et/ou le métro, ces distances sont exprimées en km.")
+        st.write(f"dist_from_center and dist_from_metro represent the distances from the accomodation to the city center\
+                 and the nearest metro station, expressed in km.")
         
-    st.title("Localisation des locations disponnible")
+    st.title("Available accomodation locations")
 #vérification si donnée disponnible à afficher
     if nbr_L == 0 :
-        st.info('Aucun logements ne correspondent à la sélection. ')
+        st.info('No accomodations match your selection.')
 #affichage des logements sur la carte
     st.map(locations)
 
@@ -75,19 +75,19 @@ if ville and type_location :
 # Gestion des cas où certaines combinaisons de filtres ne sont pas présentes
 #différents Warning et de la carte vierge si ce n'est pas le cas
 elif ville and not type_location:
-    st.warning("Veuillez sélectionner au moins une donnée dans 'Type de location'.")
-    st.title("Localisation des locations disponnible", anchor="center")
+    st.warning("Please select at least one option in 'Type of accomodation'.")
+    st.title("Available accomodation locations", anchor="center")
     st.map()
 
 elif type_location and not ville:
-    st.warning("Veuillez sélectionner au moins une donnée dans 'Ville'.")
-    st.title("Localisation des locations disponnible", anchor="center")
+    st.warning("Please select at least one option in 'City'.")
+    st.title("Available accomodation locations", anchor="center")
     st.map()
 
 else: 
-    st.warning("Veuillez sélectionner au moins une donnée dans 'Ville' et dans 'Type de location'.")
+    st.warning("Please select at least one option in both 'City' and 'Type of acoomodation'.")
 
-    st.title("Localisation des locations disponnible", anchor='center')
+    st.title("Available accomodation locations", anchor='center')
     st.map()
 
 
@@ -107,14 +107,14 @@ if ville:
 #Pour avoir des lignes sur l'axe y, mais pas très beau
     #ax.ticklabel_format(axis="y", style="plain", useLocale=True)
     #ax.grid(axis='y')
-    plt.title('Prix moyen en fonctions des différents types de logements par ville', color = 'Navy')
-    plt.xlabel('Ville')
-    plt.ylabel('Prix moyen en €')
-    plt.legend(title='Type de logement', bbox_to_anchor=(1, 1), loc='upper right')
+    plt.title('Average price by type of accomodation and city', color = 'Navy')
+    plt.xlabel('City')
+    plt.ylabel('Average price (€)')
+    plt.legend(title='Type of accommodation', bbox_to_anchor=(1, 1), loc='upper right')
 # Affichez le graphique avec Streamlit
     st.pyplot(fig)
 
 
 #si condition non remplie, Warning
 else:   
-    st.warning("Veuillez sélectionner au moins une donnée dans 'Ville' pour afficher le graphique des prix moyen")
+    st.warning("Please select at least one option in 'City' to display the average price chart")
