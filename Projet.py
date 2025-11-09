@@ -85,7 +85,7 @@ elif type_location and not ville:
     st.map()
 
 else: 
-    st.warning("Please select at least one option in both 'City' and 'Type of acoomodation'.")
+    st.warning("Please select at least one option in both 'City' and 'Type of accomodation'.")
 
     st.title("Available accomodation locations", anchor='center')
     st.map()
