@@ -55,7 +55,7 @@ if ville and type_location :
         
         if nbr_L == 0 :
             st.info('No accomodations match your selection')
-        affichage = ["city", "price", "room_type", "bedrooms", "cleanliness_rating", "guest_satisfaction_overall",\
+        affichage = ["city", "Price", "room_type", "bedrooms", "cleanliness_rating", "guest_satisfaction_overall",\
                      "dist_from_center", "dist_from_metro"]
         st.write(f"Available rental for {capacite} people with selected accomodations types: {type_location}.")
 #hauteur max comprise entre nbr de ligne * 40 et 400 (pixels)
