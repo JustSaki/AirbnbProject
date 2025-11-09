@@ -36,7 +36,7 @@ capacite = st.sidebar.select_slider("Number of guests:", capacity_sorted)
 locations = locations.query(f"capacity == {capacite}")
 
 price_sorted = sorted(Price)   
-Max= st.sidebar.select_slider("Price:", price_sorted)
+Max= st.sidebar.select_slider("Price (€):", price_sorted.2f)
 locations = locations.query(f"price <= {Max}")
 
 type_location = st.sidebar.multiselect("Type of accomodation:", Room_Type)
